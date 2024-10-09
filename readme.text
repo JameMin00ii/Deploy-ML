@@ -1,3 +1,1 @@
-python GUI.py
-
 python -m streamlit run student_performance_app.py
