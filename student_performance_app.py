@@ -5,6 +5,10 @@ import numpy as np
 # Load the pre-trained model
 model = joblib.load('best_student_performance_model.pkl')
 
+# ใช้โมเดลเพื่อทำนายข้อมูล
+prediction = model.predict([[10, 80, 70, 1, 2]])
+print("Prediction:", prediction)
+
 # Title and Description
 st.title("Student Performance Prediction")
 st.write("Enter the details of the student to predict if they will pass or not.")
