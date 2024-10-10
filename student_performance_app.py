@@ -3,7 +3,7 @@ import joblib
 import numpy as np
 
 # โหลดโมเดล
-model = joblib.load('best_student_performance_model.pkl')
+model = joblib.load('best_model.pkl')
 
 # ตั้งค่าหน้าเว็บ
 st.title("Student Performance Prediction")
