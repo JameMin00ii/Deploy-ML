@@ -10,11 +10,11 @@ st.title("Student Performance Prediction")
 st.write("ทำนายผลการเรียนของนักเรียนโดยใช้โมเดลที่ผ่านการฝึกมาแล้ว")
 
 # สร้างช่องรับข้อมูลจากผู้ใช้
-study_hours = st.number_input("Study Hours per Week", min_value=0.0, max_value=100.0, step=0.1)
+study_hours = st.number_input("Study Hours per Week | จำนวนชั่วโมงที่นักเรียนใช้ในการเรียนต่อสัปดาห์", min_value=0.0, max_value=100.0, step=0.1)
 attendance_rate = st.number_input("Attendance Rate | อัตราการเข้าชั้นเรียนของนักศึกษา (%):", min_value=0.0, max_value=100.0, step=0.1, value=75.0)
-previous_grades = st.number_input("Previous Grades | คะแนนเฉลี่ยของนักศึกษาในวิชาก่อนหน้า (0 - 100):", min_value=0.0, max_value=100.0, step=0.1, value=70.0)
-extra_activities = st.selectbox("Participation in Extracurricular Activities", ["No", "Yes"])
-parent_education = st.selectbox("Parent Education Level", ["High School", "Associate", "Bachelor", "Master", "Doctorate"])
+previous_grades = st.number_input("Previous Grades | คะแนนจากการสอบครั้งที่แล้ว (0 - 100):", min_value=0.0, max_value=100.0, step=0.1, value=70.0)
+extra_activities = st.selectbox("Participation in Extracurricular Activities | การเข้าร่วมกิจกรรมนอกหลักสูตร ", ["No", "Yes"])
+parent_education = st.selectbox("Parent Education Level | ระดับการศึกษาของผู้ปกครอง", ["High School", "Associate", "Bachelor", "Master", "Doctorate"])
 
 
 # การแปลงค่าข้อมูลที่กรอกเพื่อให้เข้ากับโมเดล
