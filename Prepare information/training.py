@@ -1,5 +1,7 @@
 # Import libraries
 import pandas as pd
+from sklearn.impute import SimpleImputer
+from sklearn.model_selection import GridSearchCV
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split, GridSearchCV
@@ -7,6 +9,7 @@ from sklearn.metrics import classification_report, accuracy_score, confusion_mat
 import joblib
 import matplotlib.pyplot as plt
 import seaborn as sns
+import pickle
 
 # Load the preprocessed train and test data
 train_data = pd.read_csv('train_data.csv')
@@ -41,17 +44,26 @@ knn_model = GridSearchCV(KNeighborsClassifier(), knn_params, cv=5, scoring='accu
 print("Training Random Forest model...")
 rf_model.fit(X_train, y_train)
 
+imputer = SimpleImputer(strategy='mean') # or 'median', 'most_frequent'
+X_train_imputed = imputer.fit_transform(X_train)
+
 print("Training K-Nearest Neighbors model...")
-knn_model.fit(X_train, y_train)
+knn_model.fit(X_train_imputed, y_train)
 
 # Step 4: Evaluate models on test data
 # Best model selection based on GridSearchCV
 rf_best = rf_model.best_estimator_
 knn_best = knn_model.best_estimator_
 
+# Impute missing values in X_test using the same imputer fitted on X_train
+X_test_imputed = imputer.transform(X_test)
+
+# Impute missing values in X_test using the same imputer fitted on X_train
+X_test_imputed = imputer.transform(X_test)
+
 # Predictions
 rf_pred = rf_best.predict(X_test)
-knn_pred = knn_best.predict(X_test)
+knn_pred = knn_best.predict(X_test_imputed) # Use imputed X_test for KNN
 
 # Evaluation metrics
 rf_accuracy = accuracy_score(y_test, rf_pred)
@@ -100,3 +112,4 @@ axs[1].set_ylabel("Actual")
 
 plt.tight_layout()
 plt.show()
+
