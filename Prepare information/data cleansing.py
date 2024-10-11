@@ -13,6 +13,7 @@ print("Missing values in each column:\n", data.isnull().sum())
 
 # กำจัดข้อมูลที่มีค่าขาดหายไป (หากมี)
 data = data.dropna()
+data.drop(columns=['Student ID'])
 
 # ตรวจสอบและเปลี่ยนข้อมูลประเภทตัวอักษรเป็นประเภทตัวเลข (ถ้ามี)
 # ตัวอย่างการแปลงข้อมูล categorical เป็น numerical (เปลี่ยนตามความเหมาะสมของชุดข้อมูลจริง)
